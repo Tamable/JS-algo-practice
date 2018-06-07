@@ -69,4 +69,22 @@ const removeDuplicates = (arr) => {
   return [...new Set(arr)]
 }
 
-console.log(removeDuplicates([1, 2, 2, 3]))
+const repeatLetter1 = (arr) => {
+  return arr.map((letter, idx) => {
+    return letter.repeat(idx)
+  })
+}
+
+const repeatLetter2 = (arr) => {
+  return arr.map((letter, idx) => {
+    if (idx == 0) {
+      return ''
+    } else {
+      let str = ''
+      while (str.length < idx) {
+        str += letter
+      }
+      return str
+    }
+  })
+}
