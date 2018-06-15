@@ -88,3 +88,29 @@ const repeatLetter2 = (arr) => {
     }
   })
 }
+
+const insertComma = (num) => {
+  let stringNum = String(num)
+  let separated = []
+
+  let sliceIdx = stringNum.length % 3
+
+  if (sliceIdx != 0) {
+    separated.push(stringNum.slice(0, sliceIdx))
+  }
+
+  let remainingNum = stringNum.slice(sliceIdx)
+  while (remainingNum.length > 0) {
+    separated.push(remainingNum.slice(0, 3))
+
+    remainingNum = remainingNum.slice(3)
+  }
+
+  return separated.join(',')
+}
+
+console.log(insertComma(100))
+console.log(insertComma(1000))
+console.log(insertComma(10000))
+console.log(insertComma(100000))
+console.log(insertComma(1000000))
