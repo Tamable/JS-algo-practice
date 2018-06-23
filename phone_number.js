@@ -1,11 +1,5 @@
 
 function letterCombinations(str) {
-  let result = [];
-  recurse(str, "", result);
-  return result;
-}
-
-function recurse(digitStr, path_so_far, resultArr) {
   const keyPad = {
     2: 'abc',
     3: 'def',
@@ -17,20 +11,26 @@ function recurse(digitStr, path_so_far, resultArr) {
     9: 'wxyz'
   }
 
-  if (!digitStr) {
-    resultArr.push(path_so_far);
-    return
+  let subResult = [];
+  let result = [];
+
+  function recurse(i) {
+    if (i === str.length) {
+      return result.push(subResult.join(''));
+    }
+
+    let letters = keyPad[Number(str[i])];
+
+    for (let j = 0; j < letters.length; j++) {
+      subResult.push(letters[j]);
+      recurse(i+1);
+      subResult.pop();
+    }
   }
 
-  first = digitStr[0]
-  remaining = digitStr.slice(1);
-
-  let letters = keyPad[Number(first)];
-
-  for (let i = 0; i < letters.length; i++) {
-    console.log(letters[i])
-    recurse(remaining, path_so_far + letters[i], resultArr)
-  }
+  recurse(0);
+  return result;
 }
 
 console.log(letterCombinations('45'))
+console.log(letterCombinations('567'))
